@@ -1,0 +1,39 @@
+﻿@using System.Security.Claims;
+
+@if (!User.Identities.Any(u => u.IsAuthenticated))
+{
+    <h1>Authorized or not : @User.Identities.Any(u => u.IsAuthenticated);</h1>
+    <br />
+    <h1> Hello from Administrator/Index</h1>
+    <br />
+  
+}
+else
+{   <h1>
+        Return "All good. You only get this message if you are authenticated.";
+        Authorized or not : @User.Identities.Any(u => u.IsAuthenticated);
+        Hello from Administrator/Index </h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Claim
+                    </th>
+                    <th>
+                        Value
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in User.Claims)
+                {
+                    <tr>
+                        <td>@claim.Type</td>
+                        <td>@claim.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    <br />
+     
+}

@@ -1,0 +1,40 @@
+﻿@using System.Security.Claims;
+
+@if (!User.Identities.Any(u => u.IsAuthenticated))
+{
+    <h1>Authorized or not : @User.Identities.Any(u => u.IsAuthenticated);</h1>
+    <h1>Hello from Home/User</h1>
+
+
+}
+else
+{
+    <h1>
+        Hello from Home/User
+        Is Authorized: @User.Identities.Any(u => u.IsAuthenticated);
+    </h1>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Claim
+                    </th>
+                    <th>
+                        Value
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in User.Claims)
+                {
+                    <tr>
+                        <td>@claim.Type</td>
+                        <td>@claim.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+}
+
